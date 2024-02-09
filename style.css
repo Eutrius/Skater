@@ -1,0 +1,127 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+:root {
+  --white: #fff;
+  --red: #f00;
+  --redShadow: #960000;
+  --background: #fdf5c9;
+  --translucentBackground: #64646480;
+  --shadow: #00000066;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#console {
+  z-index: 100;
+  position: absolute;
+}
+
+#ui {
+  z-index: 101;
+  color: var(--white);
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 20px;
+  gap: 50px;
+  height: 420px;
+  font-size: 25px;
+  font-family: "Single Day";
+}
+
+#score-container {
+  background-color: var(--white);
+  box-shadow: 5px 5px 5px var(--shadow);
+  border-radius: 50px;
+  padding: 5px;
+  width: 150px;
+  height: 50px;
+}
+
+#score {
+  background-color: var(--red);
+  box-shadow: inset 0 -3px 0 var(--redShadow);
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+#instruction {
+  gap: 10px;
+  border-radius: 10px;
+  flex-direction: column;
+  box-shadow: 5px 5px 5px var(--shadow);
+  background-color: var(--translucentBackground);
+  width: 400px;
+  height: 170px;
+}
+
+#screen {
+  width: 630px;
+  height: 420px;
+  box-shadow: 0 0 0 10000px var(--background);
+  position: absolute;
+  z-index: 99;
+
+  div {
+    background-repeat: repeat-x;
+    width: 100%;
+  }
+}
+
+#landscape {
+  background-image: url(./images/landscape.png);
+  height: 72%;
+}
+
+#park {
+  background-image: url(./images/park.png);
+  background-size: 150%;
+  margin-top: -95px;
+  height: 35%;
+}
+
+#road {
+  background-image: url(./images/road.png);
+  margin-top: -30px;
+  background-size: 120%;
+  height: 25%;
+}
+
+#player {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 180px;
+  top: 75%;
+  left: 30%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes moveLandscape {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1823px;
+  }
+}
+@keyframes moveGround {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -1920px;
+  }
+}
