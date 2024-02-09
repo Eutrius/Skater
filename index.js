@@ -16,8 +16,8 @@ const startGame = () => {
 const moveBackground = () => {
   const iterationAndTiming = "infinite linear";
   landscape.style.animation = "moveLandscape 1000s " + iterationAndTiming;
-  park.style.animation = "moveGround 250s " + iterationAndTiming;
-  road.style.animation = "moveGround 50s " + iterationAndTiming;
+  park.style.animation = "movePark 100s " + iterationAndTiming;
+  road.style.animation = "moveRoad 10s " + iterationAndTiming;
 };
 
 const playerJump = () => {

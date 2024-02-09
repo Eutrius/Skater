@@ -12,6 +12,7 @@
   --background: #fdf5c9;
   --translucentBackground: #64646480;
   --shadow: #00000066;
+  --screenWidth: 630px;
 }
 
 #container {
@@ -64,20 +65,21 @@
 }
 
 #screen {
-  width: 630px;
+  width: var(--screenWidth);
   height: 420px;
   box-shadow: 0 0 0 10000px var(--background);
   position: absolute;
   z-index: 99;
 
   div {
-    background-repeat: repeat-x;
     width: 100%;
+    background-repeat: repeat-x;
   }
 }
 
 #landscape {
   background-image: url(./images/landscape.png);
+  background-size: 300%;
   height: 72%;
 }
 
@@ -90,7 +92,7 @@
 
 #road {
   background-image: url(./images/road.png);
-  margin-top: -30px;
+  margin-top: -35px;
   background-size: 120%;
   height: 25%;
 }
@@ -110,18 +112,19 @@
 }
 
 @keyframes moveLandscape {
-  from {
-    background-position-x: 0px;
-  }
   to {
-    background-position-x: -1823px;
+    background-position-x: calc(-3 * var(--screenWidth));
   }
 }
-@keyframes moveGround {
-  from {
-    background-position-x: 0px;
-  }
+
+@keyframes movePark {
   to {
-    background-position-x: -1920px;
+    background-position-x: calc(-1.5 * var(--screenWidth));
+  }
+}
+
+@keyframes moveRoad {
+  to {
+    background-position-x: calc(-1.2 * var(--screenWidth));
   }
 }
