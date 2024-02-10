@@ -1,16 +1,17 @@
 let isPlaying = false;
 let isPlayerReady = false;
 let isPlayerOnAir = false;
+let isGameSettled = true;
 
 const startGame = () => {
   resetScore();
   setGameOverVisibility("hidden");
   removeStones();
-  isPlaying = true;
   setInstructionVisibility("hidden");
   setBackgroundAnimationState("running");
   readyPlayer();
   generateStone();
+  isPlaying = true;
 };
 
 const gameOver = () => {
@@ -19,6 +20,14 @@ const gameOver = () => {
   playerFall();
   setBackgroundAnimationState("paused");
   pauseStonesAnimation();
+  settleGame();
+};
+
+const settleGame = () => {
+  isGameSettled = false;
+  setTimeout(() => {
+    isGameSettled = true;
+  }, 2100);
 };
 
 const playerScore = () => {
@@ -133,7 +142,7 @@ const detectBump = () => {
 
 document.addEventListener("keydown", (event) => {
   const key = event.code;
-  if (key === "Space" && !isPlaying) {
+  if (key === "Space" && !isPlaying && isGameSettled) {
     startGame();
   } else if (
     key === "ArrowUp" &&
