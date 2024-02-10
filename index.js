@@ -1,23 +1,11 @@
-const instruction = document.getElementById("instruction");
-const landscape = document.getElementById("landscape");
-const park = document.getElementById("park");
-const player = document.getElementById("player");
-
 let isPlaying = false;
 let isPlayerReady = false;
 
 const startGame = () => {
   isPlaying = true;
-  instruction.style.visibility = "hidden";
-  moveBackground();
+  setInstructionVisibility("hidden");
+  setBackgroundAnimationState("running");
   readyPlayer();
-};
-
-const moveBackground = () => {
-  const iterationAndTiming = "infinite linear";
-  landscape.style.animation = "moveLandscape 1000s " + iterationAndTiming;
-  park.style.animation = "movePark 100s " + iterationAndTiming;
-  road.style.animation = "moveRoad 10s " + iterationAndTiming;
 };
 
 const playerJump = () => {
@@ -36,7 +24,17 @@ const readyPlayer = () => {
 };
 
 const changePlayerState = (state) => {
-  player.src = `images/skater/${state}.gif`;
+  document.getElementById("player").src = `images/skater/${state}.gif`;
+};
+
+const setBackgroundAnimationState = (state) => {
+  document.getElementById("landscape").style.animationPlayState = state;
+  document.getElementById("park").style.animationPlayState = state;
+  document.getElementById("road").style.animationPlayState = state;
+};
+
+const setInstructionVisibility = (state) => {
+  document.getElementById("instruction").style.visibility = state;
 };
 
 document.addEventListener("keydown", (event) => {

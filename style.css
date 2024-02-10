@@ -74,6 +74,10 @@
   div {
     width: 100%;
     background-repeat: repeat-x;
+    animation-name: moveBackground;
+    animation-play-state: paused;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
 }
 
@@ -81,6 +85,7 @@
   background-image: url(./images/landscape.png);
   background-size: 300%;
   height: 72%;
+  animation-duration: 1800s;
 }
 
 #park {
@@ -88,6 +93,7 @@
   background-size: 150%;
   margin-top: -95px;
   height: 35%;
+  animation-duration: 600s;
 }
 
 #road {
@@ -95,6 +101,7 @@
   margin-top: -35px;
   background-size: 120%;
   height: 25%;
+  animation-duration: 60s;
 }
 
 #player {
@@ -111,20 +118,8 @@
   justify-content: center;
 }
 
-@keyframes moveLandscape {
+@keyframes moveBackground {
   to {
-    background-position-x: calc(-3 * var(--screenWidth));
-  }
-}
-
-@keyframes movePark {
-  to {
-    background-position-x: calc(-1.5 * var(--screenWidth));
-  }
-}
-
-@keyframes moveRoad {
-  to {
-    background-position-x: calc(-1.2 * var(--screenWidth));
+    background-position-x: calc(-6 * var(--screenWidth));
   }
 }
