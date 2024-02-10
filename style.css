@@ -54,6 +54,11 @@
   height: 100%;
 }
 
+#player-score {
+  margin-left: 10px;
+  font-size: 30px;
+}
+
 #instruction {
   gap: 10px;
   border-radius: 10px;
@@ -85,7 +90,7 @@
   background-image: url(./images/landscape.png);
   background-size: 300%;
   height: 72%;
-  animation-duration: 1800s;
+  animation-duration: 1000s;
 }
 
 #park {
@@ -93,7 +98,7 @@
   background-size: 150%;
   margin-top: -95px;
   height: 35%;
-  animation-duration: 600s;
+  animation-duration: 300s;
 }
 
 #road {
@@ -101,7 +106,7 @@
   margin-top: -35px;
   background-size: 120%;
   height: 25%;
-  animation-duration: 60s;
+  animation-duration: 46s;
 }
 
 #player {
@@ -112,10 +117,52 @@
   left: 30%;
 }
 
+#game-over {
+  z-index: 102;
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  visibility: hidden;
+}
+
+.stone {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 90%;
+  width: 20px;
+  height: 20px;
+}
+
+.moveToPlayer {
+  animation: moveStoneToPlayer 5.3s linear;
+}
+
+.moveToEnd {
+  animation: moveStoneToEnd 2.9s linear;
+}
+
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@keyframes moveStoneToPlayer {
+  from {
+    left: calc(20px + var(--screenWidth));
+  }
+  to {
+    left: 35%;
+  }
+}
+
+@keyframes moveStoneToEnd {
+  from {
+    left: 35%;
+  }
+  to {
+    left: -20px;
+  }
 }
 
 @keyframes moveBackground {
