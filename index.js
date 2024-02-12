@@ -9,7 +9,7 @@ const startGame = () => {
   removeStones();
   setInstructionVisibility("hidden");
   setBackgroundAnimationState("running");
-  readyPlayer();
+  startPlayerRoll();
   generateStone();
   isPlaying = true;
 };
@@ -17,7 +17,7 @@ const startGame = () => {
 const gameOver = () => {
   isPlaying = false;
   setGameOverVisibility("visible");
-  playerFall();
+  makePlayerFall();
   setBackgroundAnimationState("paused");
   pauseStonesAnimation();
   settleGame();
@@ -30,7 +30,7 @@ const settleGame = () => {
   }, 2100);
 };
 
-const playerScore = () => {
+const addScore = () => {
   const score = document.getElementById("player-score");
   score.textContent = parseInt(score.textContent) + 1;
 };
@@ -39,7 +39,7 @@ const resetScore = () => {
   document.getElementById("player-score").textContent = 0;
 };
 
-const playerJump = () => {
+const makePlayerJump = () => {
   changePlayerState("jump.gif");
   isPlayerOnAir = true;
   setTimeout(() => {
@@ -48,15 +48,16 @@ const playerJump = () => {
   }, 2000);
 };
 
-const readyPlayer = () => {
+const startPlayerRoll = () => {
   changePlayerState("start-roll.gif");
+  isPlayerReady = false;
   setTimeout(() => {
     changePlayerState("roll.gif");
     isPlayerReady = true;
   }, 1800);
 };
 
-const playerFall = () => {
+const makePlayerFall = () => {
   setTimeout(() => {
     changePlayerState("fallen.png");
   }, 780);
@@ -116,8 +117,11 @@ const removeStones = () => {
 
 const handleAnimationEnd = (event) => {
   const stone = event.target;
+  // Once the animation of the stone moving in front of the player end.
   if (event.animationName === "moveStoneToPlayer") {
+    // Play the animation of moving the stone behind the player.
     stone.className = "stone moveToEnd";
+    // Activate the bump detector.
     detectBump();
   } else {
     stone.parentNode.removeChild(event.target);
@@ -125,17 +129,20 @@ const handleAnimationEnd = (event) => {
 };
 
 const detectBump = () => {
+  // Set an interval to check if the player is on air (jumped).
   const detector = setInterval(() => {
+    // If player in not on air end the game and remove the interval
     if (!isPlayerOnAir) {
-      gameOver();
       clearInterval(detector);
+      gameOver();
     }
   }, 10);
-
+  // When the stone passed the player and the game is still playing, Add score
   setTimeout(() => {
     if (isPlaying) {
-      playerScore();
+      addScore();
     }
+    // Remove the interval after the stone passes the player
     clearInterval(detector);
   }, 1300);
 };
@@ -150,6 +157,6 @@ document.addEventListener("keydown", (event) => {
     !isPlayerOnAir &&
     isPlaying
   ) {
-    playerJump();
+    makePlayerJump();
   }
 });
